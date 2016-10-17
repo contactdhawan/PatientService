@@ -21,7 +21,7 @@ public class MyClass {
 	
 	public void init(){
 		//"52.43.245.145" 
-		jedis = new Jedis("redis",6379);
+		jedis = new Jedis("52.43.245.145",6379);
 	}
 	@GET
 	@Path("/get/{key}")
