@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>sf.crom.calling</groupId>
-	<artifactId>calling-svc</artifactId>
+	<groupId>sf.crom.patientservice</groupId>
+	<artifactId>patientservice-svc</artifactId>
 	<packaging>war</packaging>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>calling-svc Maven Webapp</name>
+	<name>patientservice-svc Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<build>
 		<plugins>
@@ -31,26 +31,27 @@
 				<server>tomcat-server</server> <username>tomcat</username> <password>tomcat</password> 
 				<path>/PatientRestWebService</path> </configuration> </plugin> -->
 		</plugins>
-		<!-- <finalName>PatientRestWebService</finalName> -->
+		<finalName>${project.artifactId}</finalName>
 	</build>
+	<properties>
+		<cxf.version>3.0.4</cxf.version>
+		<spring.version>3.2.0.RELEASE</spring.version>
+		<jackson.version>1.9.13</jackson.version>
+		<junit.version>4.12</junit.version>
+	</properties>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>${junit.version}</version>
 		</dependency>
-		
+
 
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-transports-http</artifactId>
 			<version>3.0.3</version>
-		</dependency>
-		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<version>2.9.0</version>
 		</dependency>
 
 		<dependency>
@@ -63,15 +64,11 @@
 			<artifactId>cxf-rt-rs-service-description</artifactId>
 			<version>3.0.4</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-rs-client</artifactId>
 			<version>3.0.4</version>
 		</dependency>
-		<!-- <dependency> <groupId>javax.ws.rs</groupId> <artifactId>javax.ws.rs-api</artifactId> 
-			<version>2.0.1</version> </dependency> <dependency> <groupId>org.jboss.resteasy</groupId> 
-			<artifactId>resteasy-client</artifactId> <version>3.0.2.Final</version> </dependency> -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -92,7 +89,7 @@
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-jaxrs</artifactId>
-			<version>1.9.13</version>
+			<version>${jackson.version}</version>
 		</dependency>
 
 	</dependencies>
