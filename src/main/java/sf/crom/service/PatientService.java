@@ -11,7 +11,7 @@ public class PatientService {
 	@GET
 	@Path("/get/{key}")
 	public Response getValue(@PathParam("key") String key) {
-		return Response.ok().build();
+		return Response.ok(key).build();
 	}
 
 }
