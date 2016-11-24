@@ -18,6 +18,7 @@ public class PatientServiceImplTest {
 		patientServiceImpl = new PatientServiceImpl();
 		patient = new Patient();
 		patient.setName("Test Patient");
+		patient.setId(123);
 	}
 
 	@Test
@@ -49,6 +50,16 @@ public class PatientServiceImplTest {
 		patient.setName("Updated Patient");
 		Response updatedPatientResp = patientServiceImpl.updatePatient(patient);
 		assertEquals(200, updatedPatientResp.getStatus());
+	}
+
+	@Test
+	public void testUpdatePatient_shouldreturn_304() {
+		Patient patientToBeUpdated = new Patient();
+		patientToBeUpdated.setId(100);
+		patientToBeUpdated.setName("Updated Patient");
+		Response updatedPatientResp = patientServiceImpl
+				.updatePatient(patientToBeUpdated);
+		assertEquals(304, updatedPatientResp.getStatus());
 	}
 
 	@Test

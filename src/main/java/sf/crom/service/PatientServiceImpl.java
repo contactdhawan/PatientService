@@ -32,8 +32,14 @@ public class PatientServiceImpl implements PatientService {
 	public Response updatePatient(Patient patient) {
 		Logger.getLogger("Patient Service log").info(
 				"Update patient " + patient.getId());
-		patients.put(patient.getId(), patient);
-		return Response.ok(patient).build();
+		Response response;
+		if (patients.get(patient.getId()) != null) {
+			patients.put(patient.getId(), patient);
+			response = Response.ok(patient).build();
+		}else{
+			response = Response.notModified().build();
+		}
+		return response;
 	}
 
 	@Override
