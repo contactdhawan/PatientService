@@ -21,7 +21,8 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	public Patient getPatient(String id) {
-		Patient patient = patients.get(id);
+		System.out.println("In get patient "+id);
+		Patient patient = patients.get(Long.parseLong(id));
 		return patient;
 	}
 
