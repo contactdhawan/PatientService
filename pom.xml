@@ -65,6 +65,7 @@
 						<param>sf.crom.service.*</param>
 					</targetTests>
 					<timestampedReports>false</timestampedReports>
+					<exportLineCoverage>true</exportLineCoverage>
 				</configuration>
 				<executions>
 					<execution>
