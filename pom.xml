@@ -54,6 +54,27 @@
 		</pluginManagement>
 		<plugins>
 			<plugin>
+				<groupId>org.pitest</groupId>
+				<artifactId>pitest-maven</artifactId>
+				<version>1.1.10</version>
+				<configuration>
+					<targetClasses>
+						<param>sf.crom.service.*</param>
+					</targetClasses>
+					<targetTests>
+						<param>sf.crom.service.*</param>
+					</targetTests>
+					<timestampedReports>false</timestampedReports>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>mutationCoverage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 			</plugin>
