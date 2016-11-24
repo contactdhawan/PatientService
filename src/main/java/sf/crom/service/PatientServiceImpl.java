@@ -24,13 +24,13 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	public Patient getPatient(String id) {
-		Logger.getLogger("Ptient Service log").info("In get patient " + id);
+		Logger.getLogger("Patient Service log").info("In get patient " + id);
 		Patient patient = patients.get(Long.parseLong(id));
 		return patient;
 	}
 
 	public Response updatePatient(Patient patient) {
-		Logger.getLogger("Ptient Service log").info(
+		Logger.getLogger("Patient Service log").info(
 				"Update patient " + patient.getId());
 		patients.put(patient.getId(), patient);
 		return Response.ok(patient).build();
@@ -38,7 +38,7 @@ public class PatientServiceImpl implements PatientService {
 
 	@Override
 	public Response createPatient(Patient patient) {
-		Logger.getLogger("Ptient Service log").info(
+		Logger.getLogger("Patient Service log").info(
 				"Create patient " + patient.getName());
 		patientId = patientId + 1;
 		patient.setId(patientId);
@@ -48,9 +48,16 @@ public class PatientServiceImpl implements PatientService {
 
 	@Override
 	public Response deletePatient(String id) {
-		Logger.getLogger("Ptient Service log").info("Delete patient " + id);
-		patients.remove(id);
-		return Response.ok().build();
+		Logger.getLogger("Patient Service log").info("Delete patient " + id);
+		Patient patient = patients.get(Long.parseLong(id));
+		Response response;
+		if (patient != null) {
+			patients.remove(id);
+			response = Response.ok().build();
+		} else {
+			response = Response.notModified().build();
+		}
+		return response;
 	}
 
 }
