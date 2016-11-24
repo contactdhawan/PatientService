@@ -51,6 +51,7 @@
 					</executions>
 				</plugin>
 			</plugins>
+
 		</pluginManagement>
 		<plugins>
 			<plugin>
@@ -89,6 +90,18 @@
 				</configuration>
 			</plugin>
 
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>3.0.4</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>findbugs</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
@@ -163,5 +176,13 @@
 		</dependency>
 
 	</dependencies>
-
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>3.0.5-SNAPSHOT</version>
+			</plugin>
+		</plugins>
+	</reporting>
 </project>
