@@ -13,7 +13,7 @@
 		
 		</jaxrs:providers>
 	</jaxrs:server>
-	<bean id="myservices" class="sf.crom.service.PatientService"/>
+	<bean id="myservices" class="sf.crom.service.PatientServiceImpl"/>
 	<bean id="jsonprovider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"></bean>
 	
 </beans>
