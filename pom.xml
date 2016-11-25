@@ -94,10 +94,16 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>findbugs-maven-plugin</artifactId>
 				<version>3.0.4</version>
+				<configuration>
+					<effort>Max</effort>
+					<threshold>Low</threshold>
+					<xmlOutput>true</xmlOutput>
+					<failOnError>false</failOnError>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>
-							<goal>findbugs</goal>
+							<goal>check</goal>
 						</goals>
 					</execution>
 				</executions>
