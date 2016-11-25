@@ -15,7 +15,7 @@ import sf.crom.bo.Patient;
 public interface PatientService {
 	@GET
 	@Path("/patient/{patientID}")
-	public Patient getPatient(@PathParam("patientID") String id);
+	public Patient getPatient(@PathParam("patientID") Long id);
 	
 	@PUT
 	@Path("/patient/")
@@ -27,7 +27,7 @@ public interface PatientService {
 	
 	@DELETE
 	@Path("/patient/{patientID}")
-	public Response deletePatient(@PathParam("patientID") String id);
+	public Response deletePatient(@PathParam("patientID") Long id);
 	
 	
 }

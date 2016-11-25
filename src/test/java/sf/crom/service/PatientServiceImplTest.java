@@ -35,13 +35,13 @@ public class PatientServiceImplTest {
 				.createPatient(newPatient);
 		Patient createdPatient = (Patient) createdPatientResp.getEntity();
 		Response deletePatientResp = patientServiceImpl
-				.deletePatient(createdPatient.getId() + "");
+				.deletePatient(createdPatient.getId() );
 		assertEquals(200, deletePatientResp.getStatus());
 	}
 
 	@Test
 	public void testDeletePatient_should_return_304() {
-		Response deletePatientResp = patientServiceImpl.deletePatient("567");
+		Response deletePatientResp = patientServiceImpl.deletePatient(567L);
 		assertEquals(304, deletePatientResp.getStatus());
 	}
 
@@ -64,7 +64,7 @@ public class PatientServiceImplTest {
 
 	@Test
 	public void testGetPatient() {
-		Patient getExistingPatient = patientServiceImpl.getPatient("123");
+		Patient getExistingPatient = patientServiceImpl.getPatient(123L);
 		assertNotNull(getExistingPatient);
 	}
 }

@@ -23,9 +23,9 @@ public class PatientServiceImpl implements PatientService {
 		patients.put(firstPatient.getId(), firstPatient);
 	}
 
-	public Patient getPatient(String id) {
+	public Patient getPatient(Long id) {
 		Logger.getLogger("Patient Service log").info("In get patient " + id);
-		Patient patient = patients.get(Long.parseLong(id));
+		Patient patient = patients.get(id);
 		return patient;
 	}
 
@@ -53,9 +53,9 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public Response deletePatient(String id) {
+	public Response deletePatient(Long id) {
 		Logger.getLogger("Patient Service log").info("Delete patient " + id);
-		Patient patient = patients.get(Long.parseLong(id));
+		Patient patient = patients.get(id);
 		Response response;
 		if (patient != null) {
 			patients.remove(id);
