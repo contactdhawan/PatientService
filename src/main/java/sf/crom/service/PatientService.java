@@ -16,7 +16,7 @@ import sf.crom.bo.Prescription;
  * @author nk839683
  * 
  */
-@Produces({ "application/json,application/xml" })
+@Produces({ "application/xml,application/json" })
 public interface PatientService {
 	@GET
 	@Path("/patient/{patientID}")

@@ -210,7 +210,11 @@
 			<artifactId>jackson-jaxrs</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-client</artifactId>
+			<version>3.0.4</version>
+		</dependency>
 	</dependencies>
 	<reporting>
 		<plugins>
