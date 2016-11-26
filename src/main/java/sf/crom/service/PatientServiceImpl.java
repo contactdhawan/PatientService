@@ -20,8 +20,8 @@ import sf.crom.bo.Patient;
  *
  */
 public class PatientServiceImpl implements PatientService {
-	long patientId = 123;
-	HashMap<Long, Patient> patients;
+	private static long patientId = 123L;
+	private HashMap<Long, Patient> patients;
 
 	public PatientServiceImpl() {
 		init();
@@ -45,8 +45,8 @@ public class PatientServiceImpl implements PatientService {
 		Logger.getLogger("Patient Service log").info(
 				"Update patient " + patient.getId());
 		Response response;
-		if (patients.get(patient.getId()) != null) {
-			patients.put(patient.getId(), patient);
+		if (getPatients().get(patient.getId()) != null) {
+			getPatients().put(patient.getId(), patient);
 			response = Response.ok(patient).build();
 		}else{
 			response = Response.notModified().build();
@@ -58,7 +58,8 @@ public class PatientServiceImpl implements PatientService {
 	public Response createPatient(final Patient patient) {
 		Logger.getLogger("Patient Service log").info(
 				"Create patient " + patient.getName());
-		patientId = patientId + 1;
+		Long newPatientId = getPatientId() + 1;
+		setPatientId(newPatientId);
 		patient.setId(patientId);
 		patients.put(patient.getId(), patient);
 		return Response.ok(patient).build();
@@ -76,6 +77,22 @@ public class PatientServiceImpl implements PatientService {
 			response = Response.notModified().build();
 		}
 		return response;
+	}
+
+	public static long getPatientId() {
+		return patientId;
+	}
+
+	public static void setPatientId(long patientId) {
+		PatientServiceImpl.patientId = patientId;
+	}
+
+	public HashMap<Long, Patient> getPatients() {
+		return patients;
+	}
+
+	public void setPatients(HashMap<Long, Patient> patients) {
+		this.patients = patients;
 	}
 
 }

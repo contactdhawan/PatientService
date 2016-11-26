@@ -18,7 +18,7 @@ public class PatientServiceImplTest {
 		patientServiceImpl = new PatientServiceImpl();
 		patient = new Patient();
 		patient.setName("Test Patient");
-		patient.setId(123);
+		patient.setId(123L);
 	}
 
 	@Test
@@ -47,8 +47,16 @@ public class PatientServiceImplTest {
 
 	@Test
 	public void testUpdatePatient() {
-		patient.setName("Updated Patient");
-		Response updatedPatientResp = patientServiceImpl.updatePatient(patient);
+		Patient testPatient = new Patient();
+		testPatient.setName("testPatient3");
+		Response createPatient = patientServiceImpl.createPatient(testPatient);
+		Patient createdPatient = (Patient)createPatient.getEntity();
+		Patient getExistingPatient = patientServiceImpl.getPatient(createdPatient.getId());
+		
+		
+		getExistingPatient.setName("Updated Patient");
+		
+		Response updatedPatientResp = patientServiceImpl.updatePatient(getExistingPatient);
 		assertEquals(200, updatedPatientResp.getStatus());
 	}
 
@@ -64,7 +72,12 @@ public class PatientServiceImplTest {
 
 	@Test
 	public void testGetPatient() {
-		Patient getExistingPatient = patientServiceImpl.getPatient(123L);
+		//first create patient and then get
+		Patient testPatient = new Patient();
+		testPatient.setName("testPatient2");
+		Response createPatient = patientServiceImpl.createPatient(testPatient);
+		Patient createdPatient = (Patient)createPatient.getEntity();
+		Patient getExistingPatient = patientServiceImpl.getPatient(createdPatient.getId());
 		assertNotNull(getExistingPatient);
 	}
 }
