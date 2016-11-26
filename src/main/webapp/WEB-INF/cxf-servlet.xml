@@ -12,11 +12,12 @@
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<ref bean="jsonprovider" />
-
+			<ref bean="exceptionMapper" />
 		</jaxrs:providers>
 	</jaxrs:server>
 	<bean id="myservices" class="sf.crom.service.PatientServiceImpl" />
 	<bean id="jsonprovider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"></bean>
+	<bean id="exceptionMapper" class="sf.crom.exception.BusinessMapper"></bean>
 	<cxf:bus>
 		<cxf:features>
 			<cxf:logging />

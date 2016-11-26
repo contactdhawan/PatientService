@@ -8,6 +8,7 @@ import javax.ws.rs.core.Response;
 
 import sf.crom.bo.Patient;
 import sf.crom.bo.Prescription;
+import sf.crom.exception.SomeBusinessException;
 
 /**
  * @author nk839683
@@ -77,7 +78,8 @@ public class PatientServiceImpl implements PatientService {
 			patients.remove(id);
 			response = Response.ok().build();
 		} else {
-			response = Response.notModified().build();
+			//response = Response.notModified().build();
+			throw new SomeBusinessException("Unable to delete");
 		}
 		return response;
 	}

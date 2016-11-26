@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import sf.crom.bo.Patient;
+import sf.crom.exception.SomeBusinessException;
 
 public class PatientServiceImplTest {
 	PatientServiceImpl patientServiceImpl;
@@ -40,10 +41,10 @@ public class PatientServiceImplTest {
 		assertEquals(200, deletePatientResp.getStatus());
 	}
 
-	@Test
-	public void testDeletePatient_should_return_304() {
-		Response deletePatientResp = patientServiceImpl.deletePatient(567L);
-		assertEquals(304, deletePatientResp.getStatus());
+	@Test(expected=SomeBusinessException.class)
+	public void testDeletePatient_should_return_exception() {
+		patientServiceImpl.deletePatient(567L);
+		//assertEquals(304, deletePatientResp.getStatus());
 	}
 
 	@Test
