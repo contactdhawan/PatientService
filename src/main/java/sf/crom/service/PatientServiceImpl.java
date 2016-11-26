@@ -9,10 +9,10 @@ import sf.crom.bo.Patient;
 
 /**
  * @author nk839683
- *
+ * 
  */
 public class PatientServiceImpl implements PatientService {
-	private static long patientId = 123L;
+	private static long patientId=123L;
 	private HashMap<Long, Patient> patients;
 
 	public PatientServiceImpl() {
@@ -40,7 +40,7 @@ public class PatientServiceImpl implements PatientService {
 		if (getPatients().get(patient.getId()) != null) {
 			getPatients().put(patient.getId(), patient);
 			response = Response.ok(patient).build();
-		}else{
+		} else {
 			response = Response.notModified().build();
 		}
 		return response;

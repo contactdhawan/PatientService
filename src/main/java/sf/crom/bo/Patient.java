@@ -23,8 +23,8 @@ public class Patient {
 	 * 
 	 * @param id
 	 */
-	public void setId(final long id) {
-		this.id = id;
+	public void setId(final long idParam) {
+		this.id = idParam;
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class Patient {
 	/**
 	 * @param name
 	 */
-	public void setName(final String name) {
-		this.name = name;
+	public void setName(final String nameParam) {
+		this.name = nameParam;
 	}
 }
