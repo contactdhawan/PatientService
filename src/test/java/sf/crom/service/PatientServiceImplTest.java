@@ -2,6 +2,7 @@ package sf.crom.service;
 
 import static org.junit.Assert.*;
 
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
 import org.junit.Before;
@@ -35,7 +36,7 @@ public class PatientServiceImplTest {
 				.createPatient(newPatient);
 		Patient createdPatient = (Patient) createdPatientResp.getEntity();
 		Response deletePatientResp = patientServiceImpl
-				.deletePatient(createdPatient.getId() );
+				.deletePatient(createdPatient.getId());
 		assertEquals(200, deletePatientResp.getStatus());
 	}
 
@@ -50,34 +51,35 @@ public class PatientServiceImplTest {
 		Patient testPatient = new Patient();
 		testPatient.setName("testPatient3");
 		Response createPatient = patientServiceImpl.createPatient(testPatient);
-		Patient createdPatient = (Patient)createPatient.getEntity();
-		Patient getExistingPatient = patientServiceImpl.getPatient(createdPatient.getId());
-		
-		
+		Patient createdPatient = (Patient) createPatient.getEntity();
+		Patient getExistingPatient = patientServiceImpl
+				.getPatient(createdPatient.getId());
+
 		getExistingPatient.setName("Updated Patient");
-		
-		Response updatedPatientResp = patientServiceImpl.updatePatient(getExistingPatient);
+
+		Response updatedPatientResp = patientServiceImpl
+				.updatePatient(getExistingPatient);
 		assertEquals(200, updatedPatientResp.getStatus());
 	}
 
-	@Test
+	@Test(expected = NotFoundException.class)
 	public void testUpdatePatient_shouldreturn_304() {
 		Patient patientToBeUpdated = new Patient();
 		patientToBeUpdated.setId(100);
 		patientToBeUpdated.setName("Updated Patient");
-		Response updatedPatientResp = patientServiceImpl
-				.updatePatient(patientToBeUpdated);
-		assertEquals(304, updatedPatientResp.getStatus());
+		patientServiceImpl.updatePatient(patientToBeUpdated);
+		// assertEquals(304, updatedPatientResp.getStatus());
 	}
 
 	@Test
 	public void testGetPatient() {
-		//first create patient and then get
+		// first create patient and then get
 		Patient testPatient = new Patient();
 		testPatient.setName("testPatient2");
 		Response createPatient = patientServiceImpl.createPatient(testPatient);
-		Patient createdPatient = (Patient)createPatient.getEntity();
-		Patient getExistingPatient = patientServiceImpl.getPatient(createdPatient.getId());
+		Patient createdPatient = (Patient) createPatient.getEntity();
+		Patient getExistingPatient = patientServiceImpl
+				.getPatient(createdPatient.getId());
 		assertNotNull(getExistingPatient);
 	}
 }

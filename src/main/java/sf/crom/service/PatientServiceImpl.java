@@ -3,6 +3,7 @@ package sf.crom.service;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
 import sf.crom.bo.Patient;
@@ -50,7 +51,8 @@ public class PatientServiceImpl implements PatientService {
 			getPatients().put(patient.getId(), patient);
 			response = Response.ok(patient).build();
 		} else {
-			response = Response.notModified().build();
+			//response = Response.notModified().build();
+			throw new NotFoundException();
 		}
 		return response;
 	}
