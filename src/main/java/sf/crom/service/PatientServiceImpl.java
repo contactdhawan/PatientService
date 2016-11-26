@@ -6,14 +6,17 @@ import java.util.logging.Logger;
 import javax.ws.rs.core.Response;
 
 import sf.crom.bo.Patient;
+import sf.crom.bo.Prescription;
 
 /**
  * @author nk839683
  * 
  */
 public class PatientServiceImpl implements PatientService {
-	private static long patientId=123L;
+	private static long patientId = 123L;
+	private static long prescriptionId = 323L;
 	private HashMap<Long, Patient> patients;
+	private HashMap<Long, Prescription> prescriptions;
 
 	public PatientServiceImpl() {
 		init();
@@ -25,6 +28,12 @@ public class PatientServiceImpl implements PatientService {
 		firstPatient.setId(patientId);
 		firstPatient.setName("First Patient");
 		patients.put(firstPatient.getId(), firstPatient);
+
+		prescriptions = new HashMap<>();
+		Prescription prescription = new Prescription();
+		prescription.setId(prescriptionId);
+		prescription.setDescription("Prescription Description");
+		prescriptions.put(prescriptionId, prescription);
 	}
 
 	public Patient getPatient(final Long id) {
@@ -85,6 +94,12 @@ public class PatientServiceImpl implements PatientService {
 
 	public void setPatients(HashMap<Long, Patient> patients) {
 		this.patients = patients;
+	}
+
+	@Override
+	public Prescription getPrescription(Long prescriptionId) {
+		Prescription myprescription = prescriptions.get(prescriptionId);
+		return myprescription;
 	}
 
 }
