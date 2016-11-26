@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
@@ -40,8 +42,12 @@ public class Prescription {
 
 	@GET
 	@Path("/medicine/{medicineId}")
-	public Medicine getMedicine(@PathParam("medicineId") Long medicineID) {
+	public Response getMedicine(@PathParam("medicineId") Long medicineID) {
 		Medicine medicine = medicines.get(medicineID);
-		return medicine;
+		if (medicine != null) {
+			return Response.ok(medicine).build();
+		}else{
+			throw new WebApplicationException(Response.Status.NOT_FOUND);
+		}
 	}
 }

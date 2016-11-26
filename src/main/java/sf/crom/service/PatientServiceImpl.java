@@ -99,6 +99,7 @@ public class PatientServiceImpl implements PatientService {
 	@Override
 	public Prescription getPrescription(Long prescriptionId) {
 		Prescription myprescription = prescriptions.get(prescriptionId);
+		
 		return myprescription;
 	}
 
