@@ -19,19 +19,19 @@ import sf.crom.bo.Patient;
 public interface PatientService {
 	@GET
 	@Path("/patient/{patientID}")
-	public Patient getPatient(@PathParam("patientID") final Long id);
+	Patient getPatient(@PathParam("patientID") final Long id);
 	
 	@PUT
 	@Path("/patient/")
-	public Response updatePatient(final Patient patient);
+	Response updatePatient(final Patient patient);
 	
 	@POST
 	@Path("/patient/")
-	public Response createPatient(final Patient patient);
+	Response createPatient(final Patient patient);
 	
 	@DELETE
 	@Path("/patient/{patientID}")
-	public Response deletePatient(@PathParam("patientID") final Long id);
+	Response deletePatient(@PathParam("patientID") final Long id);
 	
 	
 }
