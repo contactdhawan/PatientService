@@ -4,10 +4,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author nk839683
- *
- */
-/**
- * @author nk839683
  * 
  */
 @XmlRootElement

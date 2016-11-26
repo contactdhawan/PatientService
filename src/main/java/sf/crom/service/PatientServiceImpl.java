@@ -11,14 +11,6 @@ import sf.crom.bo.Patient;
  * @author nk839683
  *
  */
-/**
- * @author nk839683
- *
- */
-/**
- * @author nk839683
- *
- */
 public class PatientServiceImpl implements PatientService {
 	private static long patientId = 123L;
 	private HashMap<Long, Patient> patients;
