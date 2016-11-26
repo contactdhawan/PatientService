@@ -11,23 +11,27 @@ import javax.ws.rs.core.Response;
 
 import sf.crom.bo.Patient;
 
+/**
+ * @author nk839683
+ *
+ */
 @Produces({ "application/json,application/xml" })
 public interface PatientService {
 	@GET
 	@Path("/patient/{patientID}")
-	public Patient getPatient(@PathParam("patientID") Long id);
+	public Patient getPatient(@PathParam("patientID") final Long id);
 	
 	@PUT
 	@Path("/patient/")
-	public Response updatePatient(Patient patient);
+	public Response updatePatient(final Patient patient);
 	
 	@POST
 	@Path("/patient/")
-	public Response createPatient(Patient patient);
+	public Response createPatient(final Patient patient);
 	
 	@DELETE
 	@Path("/patient/{patientID}")
-	public Response deletePatient(@PathParam("patientID") Long id);
+	public Response deletePatient(@PathParam("patientID") final Long id);
 	
 	
 }

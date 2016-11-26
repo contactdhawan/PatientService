@@ -35,13 +35,13 @@ public class PatientServiceImpl implements PatientService {
 		patients.put(firstPatient.getId(), firstPatient);
 	}
 
-	public Patient getPatient(Long id) {
+	public Patient getPatient(final Long id) {
 		Logger.getLogger("Patient Service log").info("In get patient " + id);
 		Patient patient = patients.get(id);
 		return patient;
 	}
 
-	public Response updatePatient(Patient patient) {
+	public Response updatePatient(final Patient patient) {
 		Logger.getLogger("Patient Service log").info(
 				"Update patient " + patient.getId());
 		Response response;
@@ -55,7 +55,7 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public Response createPatient(Patient patient) {
+	public Response createPatient(final Patient patient) {
 		Logger.getLogger("Patient Service log").info(
 				"Create patient " + patient.getName());
 		patientId = patientId + 1;
@@ -65,7 +65,7 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public Response deletePatient(Long id) {
+	public Response deletePatient(final Long id) {
 		Logger.getLogger("Patient Service log").info("Delete patient " + id);
 		Patient patient = patients.get(id);
 		Response response;
