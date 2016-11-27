@@ -1,12 +1,14 @@
 package sf.crom.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 
 import sf.crom.bo.Patient;
+import sf.crom.bo.PatientsList;
 import sf.crom.bo.Prescription;
 import sf.crom.exception.SomeBusinessException;
 
@@ -19,6 +21,7 @@ public class PatientServiceImpl implements PatientService {
 	private static long prescriptionId = 323L;
 	private HashMap<Long, Patient> patients;
 	private HashMap<Long, Prescription> prescriptions;
+	PatientsList listOfPatients;
 
 	public PatientServiceImpl() {
 		init();
@@ -36,6 +39,8 @@ public class PatientServiceImpl implements PatientService {
 		prescription.setId(prescriptionId);
 		prescription.setDescription("Prescription Description");
 		prescriptions.put(prescriptionId, prescription);
+
+		listOfPatients = new PatientsList();
 	}
 
 	public Patient getPatient(final Long id) {
@@ -52,7 +57,7 @@ public class PatientServiceImpl implements PatientService {
 			getPatients().put(patient.getId(), patient);
 			response = Response.ok(patient).build();
 		} else {
-			//response = Response.notModified().build();
+			// response = Response.notModified().build();
 			throw new NotFoundException();
 		}
 		return response;
@@ -78,7 +83,7 @@ public class PatientServiceImpl implements PatientService {
 			patients.remove(id);
 			response = Response.ok().build();
 		} else {
-			//response = Response.notModified().build();
+			// response = Response.notModified().build();
 			throw new SomeBusinessException("Unable to delete");
 		}
 		return response;
@@ -103,8 +108,35 @@ public class PatientServiceImpl implements PatientService {
 	@Override
 	public Prescription getPrescription(Long prescriptionId) {
 		Prescription myprescription = prescriptions.get(prescriptionId);
-		
+
 		return myprescription;
+	}
+
+	@Override
+	public PatientsList getPatientList() {
+		return listOfPatients;
+	}
+
+	@Override
+	public PatientsList getPatientList(Integer start, Integer size) {
+		PatientsList newPatientsList = new PatientsList();
+		List<Patient> patientSubList = listOfPatients.getPatientsList()
+				.subList(start, size);
+		newPatientsList.setPatientsList(patientSubList);
+		return newPatientsList;
+
+	}
+
+	@Override
+	public PatientsList createPatient(String name) {
+		Patient newPatient = new Patient();
+		patientId = patientId + 1;
+		newPatient.setId(patientId);
+		newPatient.setName(name);
+		List<Patient> patientsList = listOfPatients.getPatientsList();
+		patientsList.add(newPatient);
+		listOfPatients.setPatientsList(patientsList);
+		return listOfPatients;
 	}
 
 }
