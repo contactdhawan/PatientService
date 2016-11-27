@@ -12,6 +12,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
+import org.springframework.security.access.annotation.Secured;
+
 import sf.crom.bo.Patient;
 import sf.crom.bo.PatientsList;
 import sf.crom.bo.Prescription;
@@ -22,37 +24,46 @@ import sf.crom.bo.Prescription;
  */
 @Produces({ "application/xml,application/json" })
 public interface PatientService {
+	@Secured("ROLE_DOCTOR")
 	@GET
 	@Path("/patient/{patientID}")
 	Patient getPatient(@PathParam("patientID") final Long id);
 
+	@Secured("ROLE_DOCTOR")
 	@PUT
 	@Path("/patient/")
 	Response updatePatient(final Patient patient);
 
+	@Secured("ROLE_DOCTOR")
 	@POST
 	@Path("/patient/")
 	Response createPatient(final Patient patient);
 
+	@Secured("ROLE_DOCTOR")
 	@DELETE
 	@Path("/patient/{patientID}")
 	Response deletePatient(@PathParam("patientID") final Long id);
 
+	@Secured("ROLE_DOCTOR")
 	@Path("/prescription/{prescriptionId}")
 	Prescription getPrescription(
 			@PathParam("prescriptionId") final Long prescriptionId);
 
+	@Secured("ROLE_DOCTOR")
 	@GET
 	@Path("/patients")
 	PatientsList getPatientList();
 
+	@Secured("ROLE_DOCTOR")
 	@GET
 	@Path("/patients")
 	PatientsList getPatientList(@QueryParam("start") Integer start,
-			@QueryParam("size") Integer size,@HeaderParam("agent") String agaent);
-	
+			@QueryParam("size") Integer size,
+			@HeaderParam("agent") String agaent);
+
+	@Secured("ROLE_DOCTOR")
 	@POST
 	@Path("/createPatient")
-	PatientsList createPatient(@FormParam("patientName")String name);
-	
+	PatientsList createPatient(@FormParam("patientName") String name);
+
 }
