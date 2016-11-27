@@ -3,6 +3,7 @@ package sf.crom.service;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -48,7 +49,7 @@ public interface PatientService {
 	@GET
 	@Path("/patients")
 	PatientsList getPatientList(@QueryParam("start") Integer start,
-			@QueryParam("size") Integer size);
+			@QueryParam("size") Integer size,@HeaderParam("agent") String agaent);
 	
 	@POST
 	@Path("/createPatient")

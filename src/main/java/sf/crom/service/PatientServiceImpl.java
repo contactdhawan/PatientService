@@ -118,11 +118,12 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public PatientsList getPatientList(Integer start, Integer size) {
+	public PatientsList getPatientList(Integer start, Integer size,String agent) {
 		PatientsList newPatientsList = new PatientsList();
 		List<Patient> patientSubList = listOfPatients.getPatientsList()
 				.subList(start, size);
 		newPatientsList.setPatientsList(patientSubList);
+		Logger.getLogger("agent log").info("Agent name "+agent);
 		return newPatientsList;
 
 	}
