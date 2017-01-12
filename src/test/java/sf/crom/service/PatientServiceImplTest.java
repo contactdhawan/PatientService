@@ -24,13 +24,13 @@ public class PatientServiceImplTest {
 	}
 
 	@Test
-	public void testCreatePatient() {
+	public void testCreatePatient()  {
 		Response createPatientResp = patientServiceImpl.createPatient(patient);
 		assertEquals(200, createPatientResp.getStatus());
 	}
 
 	@Test
-	public void testDeletePatient_should_return_200() {
+	public void testDeletePatient_should_return_200() throws Exception{
 		Patient newPatient = new Patient();
 		newPatient.setName("Adding a patient to delete");
 		Response createdPatientResp = patientServiceImpl
@@ -43,14 +43,14 @@ public class PatientServiceImplTest {
 	}
 
 	@Test(expected=SomeBusinessException.class)
-	public void testDeletePatient_should_return_exception() {
+	public void testDeletePatient_should_return_exception() throws Exception {
 		patientServiceImpl.deletePatient(567L);
 		//assertEquals(304, deletePatientResp.getStatus());
 		Thread.sleep(2000);
 	}
 
 	@Test
-	public void testUpdatePatient() {
+	public void testUpdatePatient() throws Exception {
 		Patient testPatient = new Patient();
 		testPatient.setName("testPatient3");
 		Response createPatient = patientServiceImpl.createPatient(testPatient);
@@ -67,7 +67,7 @@ public class PatientServiceImplTest {
 	}
 
 	@Test(expected = NotFoundException.class)
-	public void testUpdatePatient_shouldreturn_304() {
+	public void testUpdatePatient_shouldreturn_304() throws Exception {
 		Patient patientToBeUpdated = new Patient();
 		patientToBeUpdated.setId(100);
 		patientToBeUpdated.setName("Updated Patient");
@@ -77,7 +77,7 @@ public class PatientServiceImplTest {
 	}
 
 	@Test
-	public void testGetPatient() {
+	public void testGetPatient() throws Exception {
 		// first create patient and then get
 		Patient testPatient = new Patient();
 		testPatient.setName("testPatient2");
