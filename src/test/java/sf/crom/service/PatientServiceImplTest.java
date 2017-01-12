@@ -39,14 +39,14 @@ public class PatientServiceImplTest {
 		Response deletePatientResp = patientServiceImpl
 				.deletePatient(createdPatient.getId());
 		assertEquals(200, deletePatientResp.getStatus());
-		Thread.sleep(2000)
+		Thread.sleep(2000);
 	}
 
 	@Test(expected=SomeBusinessException.class)
 	public void testDeletePatient_should_return_exception() {
 		patientServiceImpl.deletePatient(567L);
 		//assertEquals(304, deletePatientResp.getStatus());
-		Thread.sleep(2000)
+		Thread.sleep(2000);
 	}
 
 	@Test
@@ -63,7 +63,7 @@ public class PatientServiceImplTest {
 		Response updatedPatientResp = patientServiceImpl
 				.updatePatient(getExistingPatient);
 		assertEquals(200, updatedPatientResp.getStatus());
-		Thread.sleep(2000)
+		Thread.sleep(2000);
 	}
 
 	@Test(expected = NotFoundException.class)
@@ -72,7 +72,7 @@ public class PatientServiceImplTest {
 		patientToBeUpdated.setId(100);
 		patientToBeUpdated.setName("Updated Patient");
 		patientServiceImpl.updatePatient(patientToBeUpdated);
-		Thread.sleep(2000)
+		Thread.sleep(2000);
 		// assertEquals(304, updatedPatientResp.getStatus());
 	}
 
@@ -86,6 +86,6 @@ public class PatientServiceImplTest {
 		Patient getExistingPatient = patientServiceImpl
 				.getPatient(createdPatient.getId());
 		assertNotNull(getExistingPatient);
-		Thread.sleep(2000)
+		Thread.sleep(2000);
 	}
 }
